@@ -1,0 +1,88 @@
+body {
+  margin : 2% 8% 0% 8%;
+  /* font-family : Verdana, Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ;*/
+  
+   background-color:#F2F5A9;
+}
+
+a.tabOff {
+ background-color : LightGray;
+}
+
+a.tabOn:hover {
+ 
+/*   background-color:White;*/
+  margin: 2px 0 0 0;
+}
+
+a.tabOff:hover {
+ /* background-image : url("bg.gif");*/
+   background-color:White;
+  margin: 2px 0 0 0;
+}
+
+
+
+
+.tabspace {
+  margin: 5px 0 2px 22px;
+}
+
+/* settings for all tabs */
+.tabOn {
+  text-align : center;
+  text-decoration : none; /* no underlining for links */
+  padding : 6px 15px 3px 15px;
+   margin : 0;
+ /* margin : 10px 0 0 0; */
+}
+.tabOff {
+  text-align : center;
+  text-decoration : none; /* no underlining for links */
+  padding : 4px 15px 2px 15px;
+  margin : 0;
+}
+
+/* borders for all tabs */
+a.tabOn, a.tabOff {
+  border-left : 1px solid black;
+  border-right : 1px solid black;
+  border-top : 1px solid black;
+}
+
+/* title, about and content */
+.tabpage {
+   background-color:#F5F6CE; 
+  padding : 25px 10px 8px 10px;
+  border-top : 1px solid black;
+  /*border : 1px solid black;*/
+}
+
+.abstract {
+  color : black;
+  margin-left : 10%;
+  margin-right : 10%;
+  padding-left : 10px;
+  padding-right : 10px;
+  margin-bottom : 40px;
+}
+
+.blogger {
+  background-color : LightGray;
+  border : 1px solid DarkGray;
+  margin-left : 2%;
+  margin-right : 2%;
+  padding-left : 10px;
+  padding-right : 10px;
+}
+
+.mypic {
+  margin-top : 25px;
+  padding : 10px;
+}
+
+.footer {
+/*  background-image : url("images/bgg.jpg");*/
+  background-color : LightGrey;
+  border : 1px solid DarkGrey;
+}
