@@ -1,8 +1,9 @@
 body {
   margin : 2% 8% 0% 8%;
   /* font-family : Verdana, Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ;*/
-  
-   background-color:#F2F5A9;
+  background-color:#F2F5A9;
+  font-size: 16px; /* Add this line to set the base font size */
+  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 a.tabOff {
