@@ -331,3 +331,26 @@ p { margin: 0 0 1rem; }
   .content { max-width: none; padding: 0; }
   a { color: inherit; text-decoration: none; }
 }
+
+/* ---------- software list ---------- */
+.software { list-style: none; margin: 0; padding: 0; }
+.software li {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 0 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.software li:last-child { border-bottom: 0; }
+.software .pkg a { font-weight: 700; text-decoration: none; }
+.software .lang {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+.software .what { font-size: 0.97rem; }
+
+@media (max-width: 720px) {
+  .software li { grid-template-columns: 1fr; }
+  .software .lang { display: inline; margin-left: 0.4rem; }
+}
