@@ -1,0 +1,333 @@
+/* ==========================================================================
+   Vladimir Itskov — homepage stylesheet (two-column sidebar layout)
+   All formatting lives here. The HTML files contain content only.
+   To re-colour the site, edit ONLY the ":root" palette block below.
+   ========================================================================== */
+
+/* ---------- palette & type ---------- */
+:root {
+/*PALETTE*/
+  --ring:            #66717F;                    /* ring around the photo                       */
+  --side-bg:         #161E2A;                    /* sidebar background                          */
+  --side-rule:       #28313D;                    /* sidebar rules                               */
+  --side-ink:        #D8D5CE;                    /* sidebar name / nav text                     */
+  --side-muted:      #B39A74;                    /* sidebar role / affiliation text             */
+  --nav-hover:       rgba(255,255,255,0.06);     /* nav item hover background                   */
+  --nav-current-bg:  rgba(255,255,255,0.10);     /* current nav item background                 */
+  --nav-current-ink: #EDEAE3;                    /* current nav item text                       */
+  --paper:           #232B37;                    /* content background                          */
+  --paper-2:         rgba(255,255,255,0.06);     /* jump-list pill background                   */
+  --ink:             #E3E0D9;                    /* body text                                   */
+  --ink-muted:       #AAB1BA;                    /* secondary text                              */
+  --rule:            rgba(255,255,255,0.13);     /* hairlines in the content column             */
+  --accent:          #4FBDB7;                    /* links                                       */
+  --accent-dark:     #7FD6D1;                    /* link hover                                  */
+  --heading:         #F0EDE6;                    /* section headings (h2)                       */
+  --title:           #6CCBC6;                    /* paper titles (italic)                       */
+/*/PALETTE*/
+
+  --sidebar-w:   260px;
+  --measure:     42rem;     /* ~65–75 characters at 17px                    */
+
+  --font: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* ---------- reset-ish ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+img { max-width: 100%; height: auto; }
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+a:hover, a:focus { color: var(--accent-dark); text-decoration-color: currentColor; }
+
+/* ---------- sidebar ---------- */
+.sidebar {
+  background: var(--side-bg);
+  border-right: 1px solid var(--side-rule);
+  color: var(--side-ink);
+  padding: 2.5rem 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.portrait {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 4px solid var(--ring, var(--paper));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  margin-bottom: 1.1rem;
+}
+
+.sidebar .name {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: var(--side-ink);
+}
+
+.sidebar .role {
+  margin: 0.25rem 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--side-muted);
+}
+
+.sidebar .affil {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.sidebar .affil a { color: var(--side-muted); text-decoration-color: var(--side-rule); }
+.sidebar .affil a:hover { color: var(--side-ink); }
+
+/* vertical navigation */
+.nav {
+  margin-top: 1.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--side-rule);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nav a {
+  display: block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  color: var(--side-ink);
+  text-decoration: none;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+}
+.nav a:hover { background: var(--nav-hover); color: var(--side-ink); }
+.nav a.current {
+  background: var(--nav-current-bg);
+  color: var(--nav-current-ink);
+  font-weight: 700;
+}
+
+/* ---------- main column ---------- */
+.content {
+  padding: 3rem 3rem 4rem;
+  max-width: calc(var(--measure) + 6rem);
+  width: 100%;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+}
+
+/* subtitle line directly under the h1 (home page) */
+.lede {
+  margin: -1.25rem 0 2rem;
+  color: var(--ink-muted);
+  font-size: 1.02rem;
+}
+
+h2 {
+  margin: 2.4rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--rule);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+h2:first-of-type { margin-top: 0; }
+
+p { margin: 0 0 1rem; }
+
+/* jump list at the top of the publications page */
+.jumplist {
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  font-size: 0.92rem;
+}
+.jumplist li a {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--ink-muted);
+  background: var(--paper-2);
+}
+.jumplist li a:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+/* ---------- contact (home page) ---------- */
+.contact {
+  margin: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1.25rem;
+}
+.contact dt { color: var(--ink-muted); font-weight: 700; }
+.contact dd { margin: 0; }
+
+/* ---------- publication lists ---------- */
+.pubs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pubs li {
+  position: relative;
+  padding: 0.85rem 0 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.pubs li:last-child { border-bottom: 0; }
+
+.pubs em { color: var(--title); font-style: italic; }
+
+/* the [pdf] / [arXiv] / [link] label */
+.links {
+  display: inline-block;
+  margin-right: 0.35rem;
+  font-size: 0.86rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.links a { text-decoration: none; font-weight: 700; }
+
+/* ---------- CV tables ---------- */
+.cv {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 0.5rem;
+  font-size: 0.98rem;
+}
+.cv td {
+  vertical-align: top;
+  padding: 0.5rem 1rem 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cv td:last-child { padding-right: 0; }
+.cv tr:last-child td { border-bottom: 0; }
+.cv td:first-child {
+  white-space: nowrap;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* awards table: name first, years last (so mute the years instead) */
+.cv-awards td:first-child { color: var(--ink); white-space: normal; }
+.cv-awards td:last-child  { color: var(--ink-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---------- responsive: tablets ---------- */
+@media (max-width: 900px) {
+  .content { padding: 2.5rem 2rem 3rem; }
+}
+
+/* ---------- responsive: phones ---------- */
+@media (max-width: 720px) {
+  body {
+    display: block;
+    font-size: 16px;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    overflow: visible;
+    border-right: 0;
+    border-bottom: 1px solid var(--side-rule);
+    padding: 1.25rem 1.1rem 0.9rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "photo name"
+      "photo role"
+      "photo affil"
+      "nav   nav";
+    column-gap: 1rem;
+    align-items: start;
+    text-align: left;
+  }
+
+  .portrait {
+    grid-area: photo;
+    width: 72px;
+    height: 72px;
+    border-width: 3px;
+    margin: 0;
+    align-self: center;
+  }
+  .sidebar .name  { grid-area: name;  font-size: 1.15rem; }
+  .sidebar .role  { grid-area: role;  margin: 0.1rem 0 0.2rem; font-size: 0.9rem; }
+  .sidebar .affil { grid-area: affil; font-size: 0.82rem; }
+
+  .nav {
+    grid-area: nav;
+    margin-top: 0.9rem;
+    padding-top: 0.75rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.3rem;
+  }
+  .nav a { padding: 0.3rem 0.7rem; font-size: 0.92rem; }
+
+  .content { padding: 1.5rem 1.1rem 3rem; max-width: none; }
+
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+
+  .contact { grid-template-columns: 1fr; gap: 0.15rem; }
+  .contact dt { margin-top: 0.6rem; }
+
+  /* CV tables: stack each row's cells */
+  .cv, .cv tbody, .cv tr, .cv td { display: block; width: 100%; }
+  .cv td { padding: 0.1rem 0; border: 0; }
+  .cv tr { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
+  .cv tr:last-child { border-bottom: 0; }
+  .cv td:first-child { white-space: normal; font-size: 0.88rem; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  body { display: block; font-size: 11pt; }
+  .sidebar { position: static; height: auto; border: 0; background: none; color: #000; }
+  .nav { display: none; }
+  .content { max-width: none; padding: 0; }
+  a { color: inherit; text-decoration: none; }
+}
