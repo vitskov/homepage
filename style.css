@@ -203,32 +203,34 @@ p { margin: 0 0 1rem; }
 .contact dt { color: var(--ink-muted); font-weight: 700; }
 .contact dd { margin: 0; }
 
-/* ---------- publication lists ---------- */
+/* ---------- publication tables: link | pdf | reference ---------- */
 .pubs {
-  list-style: none;
+  width: 100%;
+  table-layout: fixed;      /* same column widths in every table */
+  border-collapse: collapse;
   margin: 0;
-  padding: 0;
 }
-
-.pubs li {
-  position: relative;
-  padding: 0.85rem 0 0.85rem 0;
+.pubs td {
+  padding: 0.85rem 0;
   border-bottom: 1px solid var(--rule);
+  vertical-align: top;
 }
-.pubs li:last-child { border-bottom: 0; }
+.pubs tr:last-child td { border-bottom: 0; }
 
-.pubs em { color: var(--title); font-style: italic; }
-
-/* the [pdf] / [arXiv] / [link] label */
-.links {
-  display: inline-block;
-  margin-right: 0.35rem;
+/* the link / pdf columns: narrow, monospace labels */
+.pubs td.lk {
+  width: 3.3rem;
+  padding-right: 0.6rem;
+  padding-top: calc(0.85rem + 0.12rem);   /* align label baseline with the reference text */
   font-size: 0.86rem;
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  color: var(--ink-muted);
+  line-height: 1.75;
   white-space: nowrap;
 }
-.links a { text-decoration: none; font-weight: 700; }
+.pubs td.lk a { text-decoration: none; font-weight: 700; }
+
+.pubs td.ref { width: auto; }
+.pubs em { color: var(--title); font-style: italic; }
 
 /* ---------- CV tables ---------- */
 .cv {
