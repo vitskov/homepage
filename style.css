@@ -42,6 +42,7 @@ body {
   font-family: var(--font);
   font-size: 17px;
   line-height: 1.6;
+  --text-line: calc(17px * 1.6);   /* the body text's line height, as a length */
   color: var(--ink);
   background: var(--paper);
   display: grid;
@@ -203,7 +204,7 @@ p { margin: 0 0 1rem; }
 .contact dt { color: var(--ink-muted); font-weight: 700; }
 .contact dd { margin: 0; }
 
-/* ---------- publication tables: ask | link | pdf | reference ---------- */
+/* ---------- publication tables: links | reference ---------- */
 .pubs {
   width: 100%;
   table-layout: fixed;      /* same column widths in every table */
@@ -217,16 +218,27 @@ p { margin: 0 0 1rem; }
 }
 .pubs tr:last-child td { border-bottom: 0; }
 
-/* the ask / link / pdf columns: narrow, monospace labels */
+/* the links cell: "link  pdf" on the first line; extras such as "supp" (under pdf) and
+   "ask questions" (centred under both) on the following lines. Each line is exactly as
+   tall as a line of the reference text (--text-line), so the links sit on its lines. */
 .pubs td.lk {
-  width: 3.3rem;
-  padding-right: 0.6rem;
+  width: 8.2rem;
+  padding-right: 0.8rem;
   padding-top: calc(0.85rem + 0.12rem);   /* align label baseline with the reference text */
   font-size: 0.86rem;
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  line-height: 1.75;
+  line-height: var(--text-line);
   white-space: nowrap;
 }
+.pubs .lk-row {
+  display: grid;
+  /* link | pdf, each centred in its column; "link" is one letter longer than "pdf", so its column is
+     half a letter wider, which centres the pair as a whole */
+  grid-template-columns: calc(50% + 0.5ch) calc(50% - 0.5ch);
+  justify-items: center;
+}
+.pubs .lk-row .wide { grid-column: 1 / -1; }   /* ask questions: centred under both */
+.pubs .lk-row .under-pdf { grid-column: 2; }   /* supp: under pdf */
 .pubs td.lk a { text-decoration: none; font-weight: 700; }
 
 .pubs td.ref { width: auto; }
@@ -266,6 +278,7 @@ p { margin: 0 0 1rem; }
   body {
     display: block;
     font-size: 16px;
+    --text-line: calc(16px * 1.6);
   }
 
   .sidebar {
