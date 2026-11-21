@@ -20,6 +20,7 @@
           integrity="sha384-a1WQdjRj162i159OYq041X6I4K8NenkrI09LlPmiHg0YOb7CR+wJOraXwK9abpnE" crossorigin="anonymous"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=askTurnstileReady" async defer></script>
   <script defer src="ask.js"></script>
+  <link rel="stylesheet" href="ask.css">
 </head>
 
 <body>
@@ -42,42 +43,43 @@
 </aside>
 
 <main class="content ask">
-
   <div class="ask-top">
     <a id="ask-back" class="ask-back" href="publications.html">&larr; publications</a>
     <label class="ask-lang"><span id="ask-lang-label">Language</span>
       <select id="ask-lang"></select>
     </label>
   </div>
-  <h1 id="ask-title">Ask this paper</h1>
+  <div class="ask-heading">
+    <h1 id="ask-title">Ask this paper:</h1>
+    <span id="ask-links" dir="ltr"></span>
+  </div>
+  <div id="ask-paper" class="ask-paper" dir="ltr"></div>
 
-  <div id="ask-paper" class="ask-paper"></div>
+  <button type="button" id="ask-fold" class="ask-control" aria-controls="ask-log" hidden>Fold all</button>
+  <div id="ask-log" class="ask-log"></div>
 
-  <p id="ask-note" class="ask-note">
-    Answers are written by an AI model (Claude, by Anthropic) that has read this paper.
-    They can contain mistakes; the paper itself is authoritative.
-  </p>
-
-  <section class="ask-frame">
+  <div id="ask-frame" class="ask-frame">
+    <button type="button" id="ask-latest" class="ask-control" aria-label="Jump to latest" hidden>↓</button>
     <form id="ask-form" class="ask-form">
-      <label for="ask-input" class="visually-hidden">Your question</label>
-      <textarea id="ask-input" rows="5" maxlength="1500"
-                placeholder="Ask a question about this paper…"></textarea>
-      <div class="ask-row">
-        <div id="ask-turnstile"></div>
+      <div class="ask-compose">
+        <button type="button" id="ask-toggle" class="ask-control" aria-controls="ask-suggested"
+                aria-expanded="false" hidden>FAQ</button>
+        <textarea id="ask-input" rows="5" maxlength="1500" aria-label="Ask a question about this paper…"
+                  placeholder="Ask a question about this paper…"></textarea>
         <button id="ask-send" type="submit" disabled>Ask</button>
       </div>
-      <p id="ask-status" class="ask-status"></p>
+      <div id="ask-turnstile"></div>
+      <p id="ask-status" class="ask-status" role="status"></p>
+      <p id="ask-note" class="ask-notice">
+        Answers are written by an AI model (Claude, by Anthropic) that has read this paper.
+        They can contain mistakes; the paper itself is authoritative.
+      </p>
     </form>
-
-    <section id="ask-suggested" class="ask-suggested" hidden>
-      <h2 id="ask-suggested-title" class="ask-suggested-title">Suggested questions</h2>
+    <section id="ask-suggested" class="ask-suggested" aria-labelledby="ask-suggested-title" hidden>
+      <h2 id="ask-suggested-title" class="ask-suggested-title">FAQ</h2>
       <div id="ask-suggested-grid" class="ask-suggested-grid"></div>
     </section>
-  </section>
-
-  <div id="ask-log" class="ask-log" aria-live="polite"></div>
-
+  </div>
 </main>
 
 </body>
