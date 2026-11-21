@@ -18,7 +18,6 @@
           integrity="sha384-lkArbWjiZKuE+bzKbj1vOEF7DKYBDNvgwZMCt5OH8bdRB92zpzyNska9Q/XKPHQD" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"
           integrity="sha384-a1WQdjRj162i159OYq041X6I4K8NenkrI09LlPmiHg0YOb7CR+wJOraXwK9abpnE" crossorigin="anonymous"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=askTurnstileReady" async defer></script>
   <script defer src="ask.js"></script>
   <link rel="stylesheet" href="ask.css">
 </head>
@@ -68,7 +67,8 @@
                   placeholder="Ask a question about this paper…"></textarea>
         <button id="ask-send" type="submit" disabled>Ask</button>
       </div>
-      <div id="ask-turnstile"></div>
+      <button type="button" id="ask-clear" class="ask-control" hidden>Clear conversation</button>
+      <div id="ask-turnstile" data-src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=askTurnstileReady"></div>
       <p id="ask-status" class="ask-status" role="status"></p>
       <p id="ask-note" class="ask-notice">
         Answers are written by an AI model (Claude, by Anthropic) that has read this paper.
